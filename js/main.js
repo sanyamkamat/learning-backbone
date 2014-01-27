@@ -48,15 +48,16 @@ var Person = Backbone.Model.extend({
 var PersonView = Backbone.View.extend({
     tagName: 'li',
 
-    initialize: function(){
+    initialize: function () {
         this.render();
         console.log(this.model)
     },
 
     render: function () {
-        this.$el.html(this.model.get('name'));
+        // anti-pattern
+        this.$el.html(this.model.get('name') + ' (' + this.model.get('age') + ') - ' + this.model.get('job'));
     }
 });
 
 var person = new Person;
-var personView = new PersonView({model:person});
+var personView = new PersonView({model: person});
