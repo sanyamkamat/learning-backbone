@@ -66,7 +66,7 @@ var personView = new PersonView({model: person});
 */
 
 /* 06 */
-
+/*
 var Person = Backbone.Model.extend({
     defaults: {
         name: 'sam',
@@ -93,3 +93,40 @@ var PersonView = Backbone.View.extend({
 
 var person = new Person;
 var personView = new PersonView({model: person});
+*/
+
+/* 07 */
+
+var Person = Backbone.Model.extend({
+    defaults: {
+        name: 'sam',
+        age: 25,
+        job: 'software engineer'
+    }
+});
+
+var PersonView = Backbone.View.extend({
+    tagName: 'li',
+
+    // Using underscore template method
+    template: _.template($('#personTemplate').html()),
+
+    //template: '#personTemplate',
+
+    initialize: function () {
+        this.render();
+        $(document.body).append(this.el);
+    },
+
+    render: function () {
+        this.$el.html(this.template(this.model.toJSON()));
+        /*var template = _.template($(this.template));
+         this.$el.html(template);*/
+    }
+});
+
+var person = new Person;
+var personView = new PersonView({model: person});
+
+var person2 = new Person({name:'rui',age:26,job:'CA'});
+var personView = new PersonView({model: person2});
